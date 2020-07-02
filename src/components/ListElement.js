@@ -4,10 +4,11 @@ import styled from 'styled-components';
 const StyledListItem = styled.li`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   text-align: left;
   margin: 2rem;
   background: palegoldenrod;
-  width: 30%;
+  width: 35rem;
 `;
 
 const InfoContainer = styled.div`
@@ -35,7 +36,7 @@ const DetailsContainer = styled.div`
   }
 
   p {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #900808;
   }
 `;

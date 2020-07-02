@@ -2,7 +2,6 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Josefin Sans', sans-serif;
 }
 
 *,
@@ -13,7 +12,24 @@
 
 html {
   box-sizing: border-box;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 62.5%;
+}
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media only screen and (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
 }
 
 @media only screen and (max-width: 68.75em) {
@@ -23,7 +39,6 @@ html {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   line-height: 1.6;
   min-height: 100vh;

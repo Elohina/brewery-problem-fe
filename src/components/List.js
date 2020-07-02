@@ -2,12 +2,12 @@ import React from 'react';
 import ListElement from './ListElement';
 import styled from 'styled-components';
 
-const StyledList = styled.div`
+const StyledList = styled.ul`
   display: flex;
+  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0 auto;
-  width: 70%;
 `;
 
 const List = ({ list, types, openDetailAction }) => {

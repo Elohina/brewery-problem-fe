@@ -7,17 +7,17 @@ import UploadFileSection from './components/UploadFileSection';
 import { API_URL } from './config/beersAPI';
 
 const StyledContainer = styled.div`
-  padding: 5rem;
+  padding: 3rem;
   text-align: center;
 `;
 
 const StyledHeader = styled.header`
-  padding: 5rem;
+  padding: 2rem;
   text-align: center;
   color: #900808;
 
   h1 {
-    font-size: 4.5rem;
+    font-size: 4rem;
   }
 
   p {
