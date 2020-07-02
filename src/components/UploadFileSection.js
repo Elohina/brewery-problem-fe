@@ -29,7 +29,9 @@ const UploadFileSection = ({handleResult, resetResult}) => {
 
       handleResult(result);
     };
-    fileReader.readAsText(file);
+    if (file) {
+      fileReader.readAsText(file);
+    }
   };
 
   const reset = () => {

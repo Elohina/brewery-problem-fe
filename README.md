@@ -1,68 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# The Brewery Problem
 
-## Available Scripts
-
-In the project directory, you can run:
+## Instructions to run and test
 
 ### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Notes
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Architectural decisions
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Therefore, the structure is based on the creation of components in different parts of the app.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- For simplicity, this application is a single page application. So, there is just one page (App.js) that contains the list of beers. To see the detail of a listed beer, you can click on "See details", which will show the complete list of details on the same page.
 
-### `npm run eject`
+- There is just one API call to retrieve the complete list of beers, this let us filter the list after processing the input file. This way, there is always some information showing to the user.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- There is an input field where the user can select the input file to be processed. Also, a reset button in case that the user would like to process different files.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- It was used [Styled Components](https://styled-components.com/) for easy implementation of React component styles.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Known issues
+- In case that the end-point retrieves a large amount of beer, the filtering of the beers after processing the input file could impact the performance of the application.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Future implementation/improvements
+- Add routing of the main pages (list and details).
+- Animations and more style details.
+- Unit test for every component.
+- Add ingredients and methods buttons in the Beer's Detail page (nice to have requirement).
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
