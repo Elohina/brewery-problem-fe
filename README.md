@@ -32,6 +32,5 @@ Launches the test runner in the interactive watch mode.<br />
 - Add routing of the main pages (list and details).
 - Animations and more style details.
 - Unit test for every component.
-- Add ingredients and methods buttons in the Beer's Detail page (nice to have requirement).
 
 

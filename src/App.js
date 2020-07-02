@@ -66,6 +66,13 @@ function App() {
     setFilteredBeers([]);
   };
 
+  const transformMethodsToList = (objectList) => {
+    return [
+      {name: 'Fermentation', amount: {value: objectList.fermentation.temp.value, unit: objectList.fermentation.temp.unit}},
+      {name: 'Mash Temperature', amount: {value: objectList.mash_temp[0].temp.value, unit: objectList.mash_temp[0].temp.unit}}
+    ];
+  };
+
   return (
     <div>
       <StyledHeader>
@@ -81,7 +88,7 @@ function App() {
               description={selectedElement.description}
               hopsList={selectedElement.ingredients.hops}
               maltsList={selectedElement.ingredients.malt}
-              methodsList={selectedElement.method}
+              methodsList={transformMethodsToList(selectedElement.method)}
               goBackToList={closeDetail} />
           ):(
             <>

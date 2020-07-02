@@ -1,5 +1,5 @@
 import React from 'react';
-import SimpleList from './SimpleList';
+import ToggleList from './ToggleList';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
@@ -8,6 +8,12 @@ const StyledContainer = styled.div`
   width: 80%;
   margin: 0px auto;
   padding: 5rem;
+
+  @media only screen and (max-width: 56.25em) {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
 `;
 const ImageContainer = styled.div`
   display: flex;
@@ -32,7 +38,6 @@ const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 0 0 70%;
-  justify-content: left;
   font-size: 1.8rem;
 
   h2 {
@@ -41,6 +46,10 @@ const DescriptionContainer = styled.div`
 
   h3 {
     font-size: 1.8rem;
+  }
+
+  @media only screen and (max-width: 56.25em) {
+    padding: 0;
   }
 `;
 
@@ -74,12 +83,9 @@ const ElementDetail = ({
         <h2>{name}</h2>
         <StyledAbv>{abv}%</StyledAbv>
         <p>{description}</p>
-        <h3>Method</h3>
-        <p>Fermentation: {methodsList.fermentation.temp.value} {methodsList.fermentation.temp.unit}</p>
-        <p>Mash Temp: {methodsList.mash_temp[0].temp.value} {methodsList.mash_temp[0].temp.unit}</p>
-        <SimpleList title="Hops" list={hopsList} />
-        <SimpleList title="Malts" list={maltsList} />
-        <SimpleList title="Method" list={maltsList} />
+        <ToggleList title="Methods" list={methodsList} enableState={"DONE"} disableState={"IDLE"}/>
+        <ToggleList title="Hops" list={hopsList} enableState={"DONE"} disableState={"IDLE"}/>
+        <ToggleList title="Malts" list={maltsList} enableState={"DONE"} disableState={"IDLE"}/>
       </DescriptionContainer>
     </StyledContainer>
   );
