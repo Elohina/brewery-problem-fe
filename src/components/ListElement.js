@@ -49,6 +49,11 @@ const DetailsButton = styled.button`
   color: #fff;
   font-size: 2rem;
   cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+
+  &:hover {
+    background-color: #da9c60;
+  }
 `;
 
 const ListElement = ({ id, imageSrc, name, typeName, abv, openDetailAction }) => {

@@ -10,11 +10,39 @@ const StyledContainer = styled.div`
     label {
       font-size: 2rem;
       font-weight: 300;
+      border-left: 1px solid peru;
+      border-right: 1px solid peru;
+      color: peru;
+      padding: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        color: #900808;
+      }
     }
 
     input {
-      color: transparent;
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+
+    button {
       padding: 1rem;
+      border: none;
+      border-right: 1px solid peru;
+      background-color: white;
+      color: peru;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 300;
+      cursor: pointer;
+      &:hover {
+        color: #900808;
+      }
     }
 `;
 

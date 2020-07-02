@@ -7,6 +7,7 @@ const StyledToggleButton = styled.button`
   color: white;
   width: 6rem;
   height: 3rem;
+  cursor: pointer;
 `;
 
 const ToggleButton = ({
