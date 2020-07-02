@@ -1,10 +1,18 @@
 import React from 'react';
 import ListElement from './ListElement';
+import styled from 'styled-components';
+
+const StyledList = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 70%;
+`;
 
 const List = ({ list, types, openDetailAction }) => {
-  const { container } = styles;
   return (
-    <ul style={container}>
+    <StyledList>
       {list.map((element, index) => (
         <ListElement
           key={element.id}
@@ -15,18 +23,8 @@ const List = ({ list, types, openDetailAction }) => {
           imageSrc={element.image_url}
           openDetailAction={openDetailAction} />
       ))}
-    </ul>
+    </StyledList>
   );
-};
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    margin: '0 auto',
-    width: '70%',
-  },
 };
 
 export default List;

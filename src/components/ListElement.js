@@ -1,80 +1,76 @@
-import React from "react";
+import React from 'react';
+import styled from 'styled-components';
+
+const StyledListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 2rem;
+  background: palegoldenrod;
+  width: 30%;
+`;
+
+const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  justify-content: space-between;
+`;
+
+const StyledImage = styled.img`
+  height: 200px;
+    margin: 2rem;
+`;
+
+const DetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  overflow-wrap: break-word;
+  width: 60%;
+
+  h3 {
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 2rem;
+    color: #900808;
+  }
+`;
+
+const DetailsButton = styled.button`
+  width: 100%;
+  background-color: Peru;
+  border: 0;
+  height: 5rem;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+`;
 
 const ListElement = ({ id, imageSrc, name, typeName, abv, openDetailAction }) => {
-  const { imageStyles, container, info, nameStyles, abvStyles, abvContainer, typeStyles, seeDetailsButton, infoContainer } = styles;
   const openDetail = (event, id) => {
     event.preventDefault();
     openDetailAction(id);
   };
 
   return (
-    <li style={container}>
-      <div style={infoContainer}>
-        <img src={imageSrc} alt={name} style={imageStyles} />
-        <div style={info}>
-          <p style={nameStyles}>{name}</p>
-          <div style={abvContainer}>
-            <p style={abvStyles}>{abv}%</p>
-          </div>
+    <StyledListItem>
+      <InfoContainer>
+        <StyledImage src={imageSrc} alt={name}/>
+        <DetailsContainer>
+          <h3>{name}</h3>
+          <p id="red">{abv}%</p>
           { typeName &&
-            <p style={typeStyles}>{typeName === 'C' ? 'Classic' : 'Barrel aged'}</p>
+            <p>{typeName === 'C' ? 'Classic' : 'Barrel aged'}</p>
           }
-        </div>
-      </div>
-      <div>
-        <button style={seeDetailsButton} onClick={(e)=>openDetail(e, id)}>See details</button>
-      </div>
-    </li>
+        </DetailsContainer>
+      </InfoContainer>
+      <DetailsButton onClick={(e)=>openDetail(e, id)}>See details</DetailsButton>
+    </StyledListItem>
   );
-};
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'left',
-    margin: '2rem',
-    background: 'PaleGoldenRod',
-    width: '30%',
-  },
-  infoContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    padding: '2rem',
-    justifyContent: 'space-between',
-  },
-  imageStyles: {
-    height: 200,
-    margin: '2rem'
-  },
-  info: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: '2rem',
-    wordWrap: 'break-word',
-    width: '60%',
-  },
-  nameStyles: {
-    fontSize: '2rem',
-    fontWeight: '500'
-  },
-  abvStyles: {
-    fontSize: '2rem',
-    color: '#900808'
-  },
-  typeStyles: {
-    fontSize: '2rem',
-    color: '#900808'
-  },
-  seeDetailsButton: {
-    width: '100%',
-    backgroundColor: 'Peru',
-    border: '0',
-    height: '5rem',
-    color: '#fff',
-    fontSize: '2rem',
-    cursor: 'pointer',
-  }
 };
 
 export default ListElement;

@@ -1,15 +1,35 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import styled from 'styled-components';
 import List from './components/List';
 import ElementDetail from './components/ElementDetail';
-import { processInput } from './utils/inputProcessor';
+import UploadFileSection from './components/UploadFileSection';
 import { API_URL } from './config/beersAPI';
+
+const StyledContainer = styled.div`
+  padding: 5rem;
+  text-align: center;
+`;
+
+const StyledHeader = styled.header`
+  padding: 5rem;
+  text-align: center;
+  color: #900808;
+
+  h1 {
+    font-size: 4.5rem;
+  }
+
+  p {
+    font-size: 2rem;
+  }
+`;
 
 function App() {
   const [beers, setBeers] = useState([]);
+  const [fetchError, setFetchError] = useState(false);
   const [types, setTypes] = useState([]);
   const [filteredBeers, setFilteredBeers] = useState([]);
-  const { headerContainer, headerTitle, authorText, container, uploadLabel, uploadInput } = styles;
   const [selectedElement, setSelectedElement] = useState(null);
 
   const getBeerList = async () => {
@@ -19,7 +39,7 @@ function App() {
       setBeers(data);
       return (data);
     } catch(err) {
-
+      setFetchError(true);
     }
   };
 
@@ -28,23 +48,9 @@ function App() {
   }, []);
 
   const showResult = (result) => {
+    setTypes(result);
     const newList = beers.slice(0, result.length);
     setFilteredBeers(newList);
-  };
-
-  const getFile = (event) => {
-    const file = event.target.files[0];
-    let fileReader = new FileReader();
-    fileReader.onloadend = (e) => {
-      const content = fileReader.result;
-      const result = processInput(content.split('\n'));
-      setTypes(result);
-      showResult(result);
-    };
-    fileReader.onerror = (e) => {
-
-    };
-    fileReader.readAsText(file);
   };
 
   const openDetailPage = (id) => {
@@ -61,13 +67,13 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header style={headerContainer}>
-        <h1 style={headerTitle}>The Brewery Problem</h1>
-        <p style={authorText}>By: Elohina Guevara</p>
-      </header>
+    <div>
+      <StyledHeader>
+        <h1>The Brewery Problem</h1>
+        <p>By: Elohina Guevara</p>
+      </StyledHeader>
       <main>
-        <div style={container}>
+        <StyledContainer>
           { selectedElement !== null ? (
             <ElementDetail imageSrc={selectedElement.image_url}
               name={selectedElement.name}
@@ -79,9 +85,7 @@ function App() {
               goBackToList={closeDetail} />
           ):(
             <>
-              <label style={uploadLabel} htmlFor="file-loader">Upload client's preferences</label>
-              <input style={uploadInput} id="file-loader" type="file" accept=".txt" onChange={e => getFile(e)}/>
-              <button onClick={()=>resetList()}>Reset</button>
+              <UploadFileSection  handleResult={showResult} resetResult={resetList} />
               { beers.length ? (
                 filteredBeers.length ? (
                   <List list={filteredBeers} types={types} openDetailAction={openDetailPage}/>
@@ -89,40 +93,14 @@ function App() {
                   <List list={beers} types={types} openDetailAction={openDetailPage}/>
                 )
               ) : (
-                <h3>"Loading..."</h3>
+                <h3>{fetchError ? "There was an error getting the beer's list. Please try later." : "Loading..."}</h3>
               )}
             </>
           )}
-        </div>
+        </StyledContainer>
       </main>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    padding: '5rem',
-    textAlign: 'center',
-  },
-  headerContainer: {
-    padding: '5rem',
-    textAlign: 'center',
-    color: '#900808'
-  },
-  headerTitle: {
-    fontSize: '4.5rem'
-  },
-  authorText: {
-    fontSize: '2rem'
-  },
-  uploadLabel: {
-    fontSize: '1.5rem',
-
-  },
-  uploadInput: {
-    color: 'transparent',
-    padding: '1rem'
-  }
-};
 
 export default App;
